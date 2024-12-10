@@ -5,13 +5,13 @@ pipeline {
         stage('Checkout Code and repository') {
             steps {
                 echo 'Checking out repository...'
-                git branch: 'master', url: 'https://github.com/ManarSASSI/Music-Classification-Project-.git'
+                git branch: 'master', url: 'https://github.com/dalijarray/projetDevops.git'
             }
         }
         stage('Build frontend') {
             steps {
                 script {
-                    dir('frontend/music-classification-genre-')
+                    dir('front')
                         {bat 'docker build -t frontend .'}
                 }
             }
@@ -20,7 +20,7 @@ pipeline {
         stage('Build svm') {
             steps {
                 script {
-                    dir('svm-service')
+                    dir('back SVM/SVM')
                         {bat 'docker build -t svm .'}
                 }
             }
@@ -28,7 +28,7 @@ pipeline {
         stage('Build vgg') {
             steps {
                 script {
-                    dir('vgg-service')
+                    dir('music_class')
                         {bat 'docker build -t vgg .'}
                 }
             }
@@ -54,14 +54,14 @@ pipeline {
         //     }
         // }
 
-        stage('Push Docker Images') {
-            steps {
-                script {
+        // stage('Push Docker Images') {
+        //     steps {
+        //         script {
                     
-                        bat 'docker-compose push'
-                }
-            }
-        }
+        //                 bat 'docker-compose push'
+        //         }
+        //     }
+        // }
 
         stage('Deploy') {
             steps {
