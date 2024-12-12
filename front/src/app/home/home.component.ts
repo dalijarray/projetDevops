@@ -189,7 +189,7 @@ export class HomeComponent implements OnInit {
         (response) => {
           this.predictionResult = response; 
           console.log( this.predictionResult);
-          this.songTitle=this.predictionResult.predicted_genre;
+          this.songTitle=this.predictionResult.genre;
         },
         (error) => {
           console.error('Erreur lors de l’envoi du fichier :', error);
